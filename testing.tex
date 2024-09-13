@@ -1,0 +1,101 @@
+\section{Tests and Test Status} \label{sec:testing}
+Based roughly on \secref{sec:definition} there is a section here for each test we perform.
+We consider since ComCam will not go on sky readiness may be demonstrated using AuxTel and/or Startracker data.
+
+Any notebooks used for testing this will be in the notebook folder of the github repo containing this document.
+
+\subsection{Data transferred and ingested in butler and access to data}
+For a given observing day, verify after the end of the day that each raw image (identified by sequence number and detector) is available in the \texttt{/repo/embargo} Butler repository by retrieving it from both a development node (\texttt{rubin-devl}) and the USDF RSP (notebook and terminal).
+Measure the delays between completion of readout for each image and the ingestion time recorded in the Butler Registry.
+Verify that the 95th(TBD) percentile is less than 1 minute(TBD).
+
+\textbf{This has been successfully.}
+
+\subsubsection{Test execution}
+\paragraph{Summit}
+In the repo of this document \texttt{RTN-088-summit.ipynb} (\secref{sec:summitnb}) give the count of raws for a given night and lists detector and exposureid for the first and last.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\paragraph{USDF}
+In the repo of this document \texttt{RTN-088-USDF.ipynb} (\secref{sec:usdfnb}) gives the count of raws for the same night and lists detector and exposureid for the first and last.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\paragraph {Ingest} \label{sec:ingest}
+Also in the USDF notebook we get the ingest time and subtract the shutter close time to calculate the
+delay to ingest.
+\begin{lstlisting}
+\end{lstlisting}
+
+\subsection{LFA replication to USDF }
+Sample LargeFileObjectAvailable events from the USDF EFD (which will be verified as corresponding to the Summit EFD below).
+Retrieve the corresponding LFA objects from the USDF LFA object store.
+
+\textbf{This has been successful.}
+\subsubsection{Test execution}
+In the same notebooks  listed earlier there is a section 3.2
+
+\paragraph{Summit} for given topic list large files on given day.
+\begin{lstlisting}
+\end{lstlisting}
+
+\paragraph{USDF} check same topic same day in USDF.
+\begin{lstlisting}
+\end{lstlisting}
+
+\subsection{Automated prompt processing}
+Verify that images taken with the ScriptQueue that have nextVisit events issued can be processed by a pipeline.
+The pipeline will execute at least one step of single-frame instrument signature removal.
+Verification will consist of retrieving the data products from the \texttt{/repo/embargo} Butler repository.
+
+\textbf{This has been successful.}
+\subsubsection{Test execution}
+In the USDF notebook we query to Raws for a given night and also the prompt output collection.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+As we did in \secref{sec:ingest} we can look at the shouter close time of the exposure which was used to make the calibrated image in prompt processing and the ingest of the processed image.
+This gives an indication of prompt processing time.
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\subsection{EFD data available }
+Choose at least 5 EFD topics at random from those available at the Summit.
+Choose at least 20 messages per topic from those available at the Summit, including 10 from the previous observing day and 10 from past history.
+Verify that all 100 messages are present in the USDF EFD.
+
+\textbf{This has been successful.}
+
+Choose 5 more topics that have graphs in the Summit Chronograf. Verify that the graph
+shown for each topic for a specified time range is the same as that displayed by the USDF
+Chronograf.
+This was already covered in \cite{RTN-053} and was not reproduced.
+
+
+\subsubsection{Test execution}
+
+\paragraph{Summit} \label{sec:efdsummit}
+In the repo of this document \texttt{RTN-088-summit.ipynb} (\secref{sec:summitnb})  section 3.4
+selects some 10s of minutes of data from random topics from the same observing run above and from a day earlier in the month.
+The results are stored in files and compared to the same  queries at USDF.
+
+This is the output from the test run:
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\paragraph{USDF}
+In the repo of this document \texttt{RTN-088-USDF.ipynb} (\secref{sec:usdfnb})  section 3.4
+loads the files mentioned in \secref{sec:efdsummit} and compare them:
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\paragraph{Chronograph - Summit and USDF} \label{sec:chrono}
+This was already covered in \cite{RTN-053} and was not reproduced.
+

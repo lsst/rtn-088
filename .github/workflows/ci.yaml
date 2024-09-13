@@ -30,7 +30,7 @@ jobs:
 
       - name: TeX build
         run: |
-          docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
+          docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make install-dep RTN-088.pdf'
 
       - name: Landing page upload
         if: ${{ github.event_name == 'push' }}

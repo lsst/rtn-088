@@ -14,12 +14,16 @@ endif
 export TEXMFHOME ?= lsst-texmf/texmf
 
 # Add aglossary.tex as a dependancy here if you want a glossary (and remove acronyms.tex)
-$(DOCNAME).pdf: $(tex) meta.tex local.bib acronyms.tex
+$(DOCNAME).pdf: $(tex) meta.tex local.bib acronyms.tex RTN-088-summit.pdf RTN-088-USDF.pdf
 	latexmk -bibtex -xelatex -f $(DOCNAME)
 #	makeglossaries $(DOCNAME)
 #	xelatex $(DOCNAME)
 # For glossary uncomment the 2 lines above
 
+RTN-088-summit.pdf : RTN-088-summit.ipynb
+	jupyter nbconvert --to PDF RTN-088-summit.ipynb
+RTN-088-USDF.pdf : RTN-088-USDF.ipynb
+	jupyter nbconvert --to PDF RTN-088-USDF.ipynb
 
 # Acronym tool allows for selection of acronyms based on tags - you may want more than DM
 # If this is a Science note put "Sci" or "Sci DM"
@@ -30,6 +34,9 @@ acronyms.tex: $(tex) myacronyms.txt
 aglossary.tex :$(tex) myacronyms.txt
 	generateAcronyms.py  -g $(tex)
 
+
+install-dep:
+	pip install -r requirements.txt
 
 .PHONY: clean
 clean:
