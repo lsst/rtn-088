@@ -1,12 +1,12 @@
 \section{Tests and Test Status} \label{sec:testing}
 Based roughly on \secref{sec:definition} there is a section here for each test we perform.
-We consider ComCamSimulated images as reasonable proxy data.
+We consider ComCamSim simulated images as reasonable proxy data.
 FLats from LSSTCam will flow soon enough.
 
 Any notebooks used for testing this will be in the notebook folder of the github repo containing this document.
 
 \subsection{Data transferred and ingested in butler and access to data}
-For a given observing day, verify after the end of the day that each raw image (identified by sequence number and detector) is available in the \texttt{/repo/embargo} Butler repository by retrieving it from both a development node (\texttt{rubin-devl}) and the USDF RSP (notebook and terminal).
+For a given observing day, verify after the end of the day that each raw image (identified by sequence number and detector) is available in the \texttt{embargo_or4} Butler repository by retrieving it from both a development node (\texttt{rubin-devl}) and the USDF RSP (notebook and terminal).
 Measure the delays between completion of readout for each image and the ingestion time recorded in the Butler Registry.
 Verify that the 95th(TBD) percentile is less than 1 minute(TBD).
 
@@ -95,7 +95,7 @@ Verification will consist of retrieving the data products from the \texttt{/repo
 
 \textbf{This has been successful.}
 \subsubsection{Test execution}
-In the USDF notebook we query to Raws for a given night and also the prompt output collection.
+In the USDF notebook we query to raws for a given night and also the prompt output collection.
 
 \begin{lstlisting}
 There are 5940 raw in collection: ['LSSTComCamSim/raw/all'] in: embargo_or4 for
@@ -105,13 +105,11 @@ There are 4890 initial_pvi in collection:
 lsstcomcamsim-00044'] in: embargo_or4
 \end{lstlisting}
 
-As we did in \secref{sec:ingest} we can look at the shouter close time of the exposure which was used to make the calibrated image in prompt processing and the ingest of the processed image.
+As we did in \secref{sec:ingest} we can look at the shutter close time of the exposure which was used to make the calibrated image in prompt processing and the ingest of the processed image.
 This gives an indication of prompt processing time.
 \begin{lstlisting}
-Time between shutter close and prompt mean:0.23514596764206372,
-std:0.012293191010495504, var:0.00015112254522052745 minutes
-The min time was 0.2103921000000053 max time was 0.3452931833333128 minutes for
-the 786 images
+The min time was 0.2103921000000053 max time was 0.3452931833333128 minutes for the 629 images
+Time between shutter close and prompt mean:0.2354390671436048, std:0.011802056330756584, var:0.00013928853363435155 minutes
 \end{lstlisting}
 
 
