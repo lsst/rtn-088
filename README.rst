@@ -10,7 +10,7 @@ L3 - USDF read for LSSTCam processing
 RTN-088
 =======
 
-This is a short description of what we will have in place for the Milestone ”L3 - USDF ready for LSSTCam processing” and the tests performed to confirm it is achieved.
+This is a short description of what we will have in place for the Milestone ``L3 - USDF ready for LSSTCam processing'' and the tests performed to confirm it is achieved.
 
 Links
 =====
