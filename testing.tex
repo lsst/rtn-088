@@ -1,6 +1,7 @@
 \section{Tests and Test Status} \label{sec:testing}
 Based roughly on \secref{sec:definition} there is a section here for each test we perform.
-We consider since ComCam will not go on sky readiness may be demonstrated using AuxTel and/or Startracker data.
+We consider ComCamSimulated images as reasonable proxy data.
+FLats from LSSTCam will flow soon enough.
 
 Any notebooks used for testing this will be in the notebook folder of the github repo containing this document.
 
@@ -16,6 +17,9 @@ Verify that the 95th(TBD) percentile is less than 1 minute(TBD).
 In the repo of this document \texttt{RTN-088-summit.ipynb} (\secref{sec:summitnb}) give the count of raws for a given night and lists detector and exposureid for the first and last.
 
 \begin{lstlisting}
+There are 7074 raw in collection: ['LSSTComCamSim/raw/all'] in: /repo/LSSTComCam for exposure.day_obs = 20240626
+4 7024062600701
+0 7024062600700
 \end{lstlisting}
 
 \paragraph{USDF}
@@ -40,6 +44,7 @@ In the same notebooks  listed earlier there is a section 3.2
 
 \paragraph{Summit} for given topic list large files on given day.
 \begin{lstlisting}
+Got 7704 Large files availble since 2024-06-26 at summit
 \end{lstlisting}
 
 \paragraph{USDF} check same topic same day in USDF.
@@ -87,6 +92,16 @@ The results are stored in files and compared to the same  queries at USDF.
 This is the output from the test run:
 
 \begin{lstlisting}
+lsst.sal.MTM2.logevent_digitalOutput had 551 messages
+lsst.sal.MTM2.logevent_digitalOutput had 551 older messages
+lsst.sal.MTM2.tangentActuatorSteps had 151 messages
+lsst.sal.MTM2.tangentActuatorSteps had 151 older messages
+lsst.sal.ATOODS.logevent_heartbeat had 30 messages
+lsst.sal.ATOODS.logevent_heartbeat had 30 older messages
+lsst.sal.TunableLaser.logevent_heartbeat had 30 messages
+lsst.sal.TunableLaser.logevent_heartbeat had 30 older messages
+Random selction of five 'summit' topics ['lsst.sal.MTM2.logevent_digitalOutput', 'lsst.sal.MTM2.tangentActuatorSteps', 'lsst.sal.ATOODS.logevent_heartbeat', 'lsst.sal.TunableLaser.logevent_heartbeat'] with messages on 2024-06-26
+Random selction of five 'summit' older topics ['lsst.sal.MTM2.logevent_digitalOutput', 'lsst.sal.MTM2.tangentActuatorSteps', 'lsst.sal.ATOODS.logevent_heartbeat', 'lsst.sal.TunableLaser.logevent_heartbeat'] with messages on 2024-06-26
 \end{lstlisting}
 
 \paragraph{USDF}
