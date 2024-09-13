@@ -26,12 +26,20 @@ There are 7074 raw in collection: ['LSSTComCamSim/raw/all'] in: /repo/LSSTComCam
 In the repo of this document \texttt{RTN-088-USDF.ipynb} (\secref{sec:usdfnb}) gives the count of raws for the same night and lists detector and exposureid for the first and last.
 
 \begin{lstlisting}
+There are 7074 raw in collection: ['LSSTComCamSim/raw/all'] in: embargo_or4 for
+exposure.day_obs = 20240626
+5 7024062600001
+2 7024062600784
 \end{lstlisting}
 
 \paragraph {Ingest} \label{sec:ingest}
 Also in the USDF notebook we get the ingest time and subtract the shutter close time to calculate the
 delay to ingest.
 \begin{lstlisting}
+Got Metadata for 786 exposures
+The min time was 0.20186854999987958 max time was 0.3452931833333128 minutes
+Time between shutter close and ingest mean:0.23514596764206372,
+std:0.012293191010495504, var:0.00015112254522052745 minutes
 \end{lstlisting}
 
 \subsection{LFA replication to USDF }
@@ -49,6 +57,35 @@ Got 7704 Large files availble since 2024-06-26 at summit
 
 \paragraph{USDF} check same topic same day in USDF.
 \begin{lstlisting}
+Got 7704 Large files available since 2024-06-26 at usdf
+result[3399] https://s3.cp.lsst.org/rubinobs-lfa-cp/Electrometer:201/fits/2024/0
+6/27/Electrometer:201_fits_2024-06-28T00:56:02.210.fits
+Access s3://rubin:rubinobs-lfa-cp/Electrometer:201/fits/2024/06/27/Electrometer:
+201_fits_2024-06-28T00:56:02.210.fits
+Object is 8640 bytes. b'SIMPLE  =                    T / conforms to FITS
+standard                      '
+result[255] https://s3.cp.lsst.org/rubinobs-lfa-cp/Electrometer:201/fits/2024/06
+/27/Electrometer:201_fits_2024-06-27T23:47:39.233.fits
+Access s3://rubin:rubinobs-lfa-cp/Electrometer:201/fits/2024/06/27/Electrometer:
+201_fits_2024-06-27T23:47:39.233.fits
+Object is 8640 bytes. b'SIMPLE  =                    T / conforms to FITS
+standard                      '
+result[7077] https://s3.cp.lsst.org/rubinobs-lfa-cp/Electrometer:201/fits/2024/0
+8/27/Electrometer:201_fits_2024-08-27T23:50:53.673.fits
+Access s3://rubin:rubinobs-lfa-cp/Electrometer:201/fits/2024/08/27/Electrometer:
+201_fits_2024-08-27T23:50:53.673.fits
+Object is 5760 bytes. b'SIMPLE  =                    T / conforms to FITS
+standard                      '
+result[7694] https://s3.cp.lsst.org/rubinobs-lfa-cp/Electrometer:201/fits/2024/0
+9/11/Electrometer:201_fits_2024-09-12T02:22:52.376.fits
+Access s3://rubin:rubinobs-lfa-cp/Electrometer:201/fits/2024/09/11/Electrometer:
+201_fits_2024-09-12T02:22:52.376.fits
+Object is 8640 bytes. b'SIMPLE  = T / conforms to FITS standard                      '
+result[658] https://s3.cp.lsst.org/rubinobs-lfa-cp/Electrometer:201/fits/2024/06
+/27/Electrometer:201_fits_2024-06-27T23:56:48.235.fits
+Access s3://rubin:rubinobs-lfa-cp/Electrometer:201/fits/2024/06/27/Electrometer:
+201_fits_2024-06-27T23:56:48.235.fits
+Object is 8640 bytes. b'SIMPLE  =                    T / conforms to FITS standard
 \end{lstlisting}
 
 \subsection{Automated prompt processing}
@@ -61,11 +98,20 @@ Verification will consist of retrieving the data products from the \texttt{/repo
 In the USDF notebook we query to Raws for a given night and also the prompt output collection.
 
 \begin{lstlisting}
+There are 5940 raw in collection: ['LSSTComCamSim/raw/all'] in: embargo_or4 for
+exposure.day_obs = 20240626 and exposure.observation_reason = 'object'
+There are 4890 initial_pvi in collection:
+['LSSTComCamSim/prompt/output-2024-06-26/ApPipe/prompt-proto-service-
+lsstcomcamsim-00044'] in: embargo_or4
 \end{lstlisting}
 
 As we did in \secref{sec:ingest} we can look at the shouter close time of the exposure which was used to make the calibrated image in prompt processing and the ingest of the processed image.
 This gives an indication of prompt processing time.
 \begin{lstlisting}
+Time between shutter close and prompt mean:0.23514596764206372,
+std:0.012293191010495504, var:0.00015112254522052745 minutes
+The min time was 0.2103921000000053 max time was 0.3452931833333128 minutes for
+the 786 images
 \end{lstlisting}
 
 
@@ -109,6 +155,15 @@ In the repo of this document \texttt{RTN-088-USDF.ipynb} (\secref{sec:usdfnb})  
 loads the files mentioned in \secref{sec:efdsummit} and compare them:
 
 \begin{lstlisting}
+lsst.sal.MTM2.logevent_digitalOutput had 551 messages - summit had 551
+lsst.sal.MTM2.tangentActuatorSteps had 151 messages - summit had 151
+lsst.sal.ATOODS.logevent_heartbeat had 30 messages - summit had 30
+lsst.sal.TunableLaser.logevent_heartbeat had 30 messages - summit had 30
+Older messages
+lsst.sal.MTM2.logevent_digitalOutput had 551 messages - summit had 551
+lsst.sal.MTM2.tangentActuatorSteps had 151 messages - summit had 151
+lsst.sal.ATOODS.logevent_heartbeat had 30 messages - summit had 30
+lsst.sal.TunableLaser.logevent_heartbeat had 30 messages - summit had 30
 \end{lstlisting}
 
 \paragraph{Chronograph - Summit and USDF} \label{sec:chrono}
