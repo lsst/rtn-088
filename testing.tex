@@ -6,7 +6,7 @@ FLats from LSSTCam will flow soon enough.
 Any notebooks used for testing this will be in the notebook folder of the github repo containing this document.
 
 \subsection{Data transferred and ingested in butler and access to data}
-For a given observing day, verify after the end of the day that each raw image (identified by sequence number and detector) is available in the \texttt{embargo_or4} Butler repository by retrieving it from both a development node (\texttt{rubin-devl}) and the USDF RSP (notebook and terminal).
+For a given observing day, verify after the end of the day that each raw image (identified by sequence number and detector) is available in the \texttt{embargo\_or4} Butler repository by retrieving it from both a development node (\texttt{rubin-devl}) and the USDF RSP (notebook and terminal).
 Measure the delays between completion of readout for each image and the ingestion time recorded in the Butler Registry.
 Verify that the 95th(TBD) percentile is less than 1 minute(TBD).
 
