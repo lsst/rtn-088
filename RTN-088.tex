@@ -1,7 +1,12 @@
-\documentclass[OPS,lsstdraft,authoryear,toc]{lsstdoc}
+\documentclass[OPS,authoryear,toc]{lsstdoc}
+
 \input{meta}
 
 % Package imports go here.
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
 
 % Local commands go here.
 
@@ -23,7 +28,7 @@
 % \setDocSubtitle{A subtitle}
 
 \author{%
-Jim Chiangi and William O'Mullane
+Jim Chiang and William O'Mullane
 }
 
 \setDocRef{RTN-088}
@@ -35,7 +40,7 @@ Jim Chiangi and William O'Mullane
 % \setDocCurator{The Curator of this Document}
 
 \setDocAbstract{%
-This is a short description of what we will have in place for the Milestone ”L3 - USDF ready for LSSTCam processing” and the tests performed to confirm it is achieved.
+This is a short description of what we will have in place for the Milestone ``L3 - USDF ready for LSSTCam processing'' and the tests performed to confirm it is achieved.
 }
 
 % Change history defined here.
@@ -43,7 +48,7 @@ This is a short description of what we will have in place for the Milestone ”L
 % Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
 % See LPM-51 for version number policy.
 \setDocChangeRecord{%
-  \addtohist{1}{YYYY-MM-DD}{Unreleased.}{Jim Chiang}
+  \addtohist{1.0}{2024-09-13}{Initial version}{J. Chiang, W. O'Mullane}
 }
 
 
@@ -57,6 +62,11 @@ This is a short description of what we will have in place for the Milestone ”L
 \input{body}
 
 \appendix
+\includepdf[pages=1,pagecommand={\section{Summit Notebook \label{sec:summitnb}}}]{RTN-088-summit}
+\includepdf[pages=2-]{RTN-088-summit}
+\includepdf[pages=1,pagecommand={\section{USDF Notebook \label{sec:usdfnb}}}]{RTN-088-USDF}
+\includepdf[pages=2-]{RTN-088-USDF}
+
 % Include all the relevant bib files.
 % https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
 \section{References} \label{sec:bib}
